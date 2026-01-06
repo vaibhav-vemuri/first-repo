@@ -1,9 +1,9 @@
 #include <stdio.h>
-int insertion(int arr[], int n, int pos, int val);
+int deletion(int arr[], int n, int pos);
 
 int main()
 {
-    int pos, n, val, arr[50];
+    int pos, n, arr[50];
     printf("Enter number of elements in the array: ");
     scanf("%d", &n);
 
@@ -13,13 +13,10 @@ int main()
         scanf("%d", &arr[i]);
     }
 
-    printf("Enter the position of insertion: ");
+    printf("Enter the position of deletion: ");
     scanf("%d", &pos);
 
-    printf("Enter value: ");
-    scanf("%d", &val);
-
-    n = insertion(arr, n, pos, val);
+    n = deletion(arr, n, pos);
 
     for (int i = 0; i < n; i++)
     {
@@ -29,13 +26,12 @@ int main()
     return 0;
 }
 
-int insertion(int arr[], int n, int pos, int val)
+int deletion(int arr[], int n, int pos)
 {
-    for (int i = n; i >= pos; i--)
+    for (int i = pos - 1; i < n - 1; i++)
     {
-        arr[i] = arr[i - 1];
+        arr[i] = arr[i + 1];
     }
-    arr[pos - 1] = val;
-    n++;
+    n--;
     return n;
 }
