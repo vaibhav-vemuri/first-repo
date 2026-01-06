@@ -1,22 +1,41 @@
 #include <stdio.h>
-void toh(int num, char origin, char auxiliary, char destination);
+int insertion(int arr[], int n, int pos, int val);
+
 int main()
 {
-    int num1;
-    printf("Enter number of disks: ");
-    scanf("%d", &num1);
-    toh(num1, 'A', 'B', 'C');
-    return 0;
-}
-void toh(int num, char origin, char auxiliary, char destination)
-{
-    if (num == 1)
+    int pos, n, val, arr[50];
+    printf("Enter number of elements in the array: ");
+    scanf("%d", &n);
+
+    printf("Enter elements in the array: ");
+    for (int i = 0; i < n; i++)
     {
-        printf("Move disk 1 from %c to %c\n", origin, destination);
-        return;
+        scanf("%d", &arr[i]);
     }
 
-    toh(num - 1, origin, destination, auxiliary);
-    printf("Move disk %d from %c to %c\n", num, origin, destination);
-    toh(num - 1, auxiliary, origin, destination);
+    printf("Enter the position of insertion: ");
+    scanf("%d", &pos);
+
+    printf("Enter value: ");
+    scanf("%d", &val);
+
+    n = insertion(arr, n, pos, val);
+
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
+
+int insertion(int arr[], int n, int pos, int val)
+{
+    for (int i = n; i >= pos; i--)
+    {
+        arr[i] = arr[i - 1];
+    }
+    arr[pos - 1] = val;
+    n++;
+    return n;
 }
